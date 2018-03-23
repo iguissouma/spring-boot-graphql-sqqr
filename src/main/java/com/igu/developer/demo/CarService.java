@@ -1,6 +1,7 @@
 package com.igu.developer.demo;
 
 import io.leangen.graphql.annotations.GraphQLArgument;
+import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,13 @@ public class CarService {
     @GraphQLMutation(name = "deleteCar")
     public void deleteCar(@GraphQLArgument(name = "id") Long id) {
         carRepository.deleteById(id);
+    }
+
+    @GraphQLQuery(name = "isCool")
+    public boolean isCool(@GraphQLContext Car car) {
+        return !car.getName().equals("AMC Gremlin") &&
+                !car.getName().equals("Triumph Stag") &&
+                !car.getName().equals("Ford Pinto") &&
+                !car.getName().equals("Yugo GV");
     }
 }
