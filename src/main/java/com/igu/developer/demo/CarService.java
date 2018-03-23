@@ -30,7 +30,7 @@ public class CarService {
     }
 
     @GraphQLMutation(name = "saveCar")
-    public Car saveCar(Car car) {
+    public Car saveCar(@GraphQLArgument(name = "car") Car car) {
         return carRepository.save(car);
     }
 
