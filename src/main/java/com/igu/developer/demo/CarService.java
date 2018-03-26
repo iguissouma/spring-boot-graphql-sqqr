@@ -5,7 +5,6 @@ import io.leangen.graphql.annotations.GraphQLContext;
 import io.leangen.graphql.annotations.GraphQLMutation;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +13,11 @@ import java.util.Optional;
 public class CarService {
 
     private final CarRepository carRepository;
+    private final GiphyService giphyService;
 
-    public CarService(CarRepository carRepository) {
+    public CarService(CarRepository carRepository, GiphyService giphyService) {
         this.carRepository = carRepository;
+        this.giphyService = giphyService;
     }
 
     @GraphQLQuery(name = "cars")
@@ -45,5 +46,10 @@ public class CarService {
                 !car.getName().equals("Triumph Stag") &&
                 !car.getName().equals("Ford Pinto") &&
                 !car.getName().equals("Yugo GV");
+    }
+
+    @GraphQLQuery(name = "giphyUrl")
+    public String getGiphyUrl(@GraphQLContext Car car) {
+        return giphyService.getGiphyUrl(car.getName());
     }
 }
