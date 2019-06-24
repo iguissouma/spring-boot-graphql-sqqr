@@ -3,16 +3,19 @@ package com.igu.developer.demo;
 import io.leangen.graphql.annotations.GraphQLQuery;
 import lombok.*;
 
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
-@ToString @EqualsAndHashCode
+@ToString
+@EqualsAndHashCode
 public class Car {
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @GraphQLQuery(name = "id", description = "A car's id")
     private Long id;
     @GraphQLQuery(name = "name", description = "A car's name")

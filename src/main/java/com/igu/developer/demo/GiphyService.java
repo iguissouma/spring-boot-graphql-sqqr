@@ -17,9 +17,9 @@ import java.net.URI;
 @Service
 public class GiphyService {
 
-    private RestTemplate rest = new RestTemplate();
     public static final String GIPHY_BASE = "http://api.giphy.com/v1/gifs/search?q=";
     public static final String KEY = "&api_key=dc6zaTOxFJmzC";
+    private RestTemplate rest = new RestTemplate();
 
     public String getGiphyUrl(String searchTerm) {
         Gson gson = new Gson();
